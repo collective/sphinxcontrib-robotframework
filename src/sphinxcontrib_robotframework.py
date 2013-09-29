@@ -55,6 +55,19 @@ class RobotSettingsDirective(Directive):
         return []
 
 
+def get_robot_variables():
+    """Return list of Robot Framework -compatible cli-variables parsed
+    from ROBOT_-prefixed environment variable
+
+    """
+    prefix = 'ROBOT_'
+    variables = []
+    for key in os.environ:
+        if key.startswith(prefix) and len(key) > len(prefix):
+            variables.append('%s:%s' % (key[len(prefix):], os.environ[key]))
+    return variables
+
+
 def run_robot(app, doctree, docname):
 
     # Tests can be switched off with a global setting:
@@ -83,15 +96,20 @@ def run_robot(app, doctree, docname):
     robot_file.write(doctree._robot_source.encode('utf-8'))
     robot_file.flush()  # flush buffer into file
 
+    # Get robot variables from environment
+    env_robot_variables = get_robot_variables()
+    env_robot_keys = [var.split(':')[0] for var in env_robot_variables]
+
     # Run the test suite:
     options = {
         'outputdir': robot_dir,
         'output': 'NONE',
         'log': 'NONE',
         'report': 'NONE',
-        'variable': [
-            '%s:%s' % key_value for key_value in
-            app.config.sphinxcontrib_robotframework_variables.items()
+        'variable': env_robot_variables + [
+            '%s:%s' % (key, value) for key, value
+            in app.config.sphinxcontrib_robotframework_variables.items()
+            if not key in env_robot_keys
         ]
     }
     robot.run(robot_file.name, **options)
