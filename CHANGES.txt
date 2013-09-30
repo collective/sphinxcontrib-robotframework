@@ -1,11 +1,11 @@
 Changelog
 ---------
 
-0.4.2 (unreleased)
+0.4.2 (2013-09-30)
 ------------------
 
-- Nothing changed yet.
-
+- Fix to keep working with robotframework < 2.8.x
+  [Asko Soukka]
 
 0.4.1 (2013-09-30)
 ------------------
