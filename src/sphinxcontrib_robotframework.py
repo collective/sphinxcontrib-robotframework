@@ -96,6 +96,14 @@ def run_robot(app, doctree, docname):
     robot_file.write(doctree._robot_source.encode('utf-8'))
     robot_file.flush()  # flush buffer into file
 
+    # Skip running when the source has no test cases (e.g. has settings)
+    try:
+        robot.running.TestSuiteBuilder().build(robot_file.name)
+    except robot.errors.DataError, e:
+        if e.message.endswith('File has no test case table.'):
+            return
+        raise
+
     # Get robot variables from environment
     env_robot_variables = get_robot_variables()
     env_robot_keys = [var.split(':')[0] for var in env_robot_variables]
