@@ -103,6 +103,9 @@ def run_robot(app, doctree, docname):
         if e.message.endswith('File has no test case table.'):
             return
         raise
+    except AttributeError, e:
+        # Fix to make this package still work with robotframework < 2.8.x
+        pass
 
     # Get robot variables from environment
     env_robot_variables = get_robot_variables()
