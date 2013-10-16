@@ -1,11 +1,10 @@
 Changelog
----------
+=========
 
 0.4.3 (unreleased)
 ------------------
 
 - Nothing changed yet.
-
 
 0.4.2 (2013-09-30)
 ------------------
@@ -22,7 +21,7 @@ Changelog
 0.4.0 (2013-09-29)
 ------------------
 
-- Add support for overriding robot variables using ROBOT_-prefixed environment
+- Add support for overriding robot variables using ROBOT\_-prefixed environment
   variables [Asko Soukka]
 
 0.3.1 (2013-09-21)
