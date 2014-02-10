@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.4.3 (unreleased)
+0.4.3 (2014-02-10)
 ------------------
 
-- Nothing changed yet.
+- Add global 'quiet' option to drop all robot syntax from sphinx output
+  [Asko Soukka]
 
 0.4.2 (2013-09-30)
 ------------------
