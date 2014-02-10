@@ -26,6 +26,9 @@ class RobotAwareCodeBlock(CodeBlock):
                 document._robot_source += u"\n" + robot_source
             if 'hidden' in (self.options.get('class', []) or []):
                 return []  # suppress nodes with :class: hidden
+            app = document.settings.env.app
+            if app.config.sphinxcontrib_robotframework_quiet:
+                return []  # suppress nodes when required
         return super(RobotAwareCodeBlock, self).run()
 
 
@@ -142,6 +145,7 @@ def run_robot(app, doctree, docname):
 def setup(app):
     app.add_config_value('sphinxcontrib_robotframework_enabled', True, True)
     app.add_config_value('sphinxcontrib_robotframework_variables', {}, True)
+    app.add_config_value('sphinxcontrib_robotframework_quiet', False, True)
     app.add_directive('code', RobotAwareCodeBlock)
     app.add_directive('robotframework', RobotSettingsDirective)
     app.connect('doctree-resolved', run_robot)
