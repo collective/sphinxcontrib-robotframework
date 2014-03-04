@@ -17,7 +17,11 @@ Usage
 
       extensions = ['sphinxcontrib_robotframework']
 
+      # Enable Robot Framework tests during Sphinx compilation
       sphinxcontrib_robotframework_enabled = True
+
+      # Hide Robot Framework syntax form the Sphinx output by default
+      sphinxcontrib_robotframework_quiet = True
 
 3. Write your Robot Framework tests in space separated form as contents of
    Docutils' ``code``-directives with ``robotframework``-language, e.g.:
