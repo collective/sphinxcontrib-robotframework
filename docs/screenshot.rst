@@ -25,7 +25,7 @@ this very Sphinx-documentation:
        Capture page screenshot  robotframework.png
 
 Finally, to avoid the same screenshot being generated again and again, limit it
-to be generated only once, by entirgn the following special
+to be generated only once, by entering the following special
 ``robotframework``-directive.
 
 .. code:: restructuredtext
