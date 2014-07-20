@@ -1,59 +1,59 @@
 Document with an annotated screenshot
 =====================================
 
-Only sky is the limit, when `sphinxcontrib-robotframework`_ is combined with
-both `robotframework-selenium2library`_ and
-`robotframework-selenium2screenshots`_.
+While Selenium_ has built-in support for capturing whole page screenshots, usually screenshots must be cropped and some times also annotated to make them useful in a documentation.
 
-The latter provides a convenient screenshot cropping and annotating library
-(originally developed for `plone.app.robotframework`_), which allows to
-annotate any webpage, which includes jQuery-library, annotate it and and
-capture cropped screenshot of the results.
+.. _Selenium: http://docs.seleniumhq.org/
 
-This is how it works:
+A Robot Framework library called `robotframework-selenium2screenshots`_ provides a collection of re-usable keywords for cropping and annotating screenshots.
 
+.. _robotframework-selenium2screenshots: http://pypi.python.org/pypi/robotframework-selenium2screenshots
+
+A cropped and annotated screenshot could look like this:
+
+.. figure:: robotframework.png
 .. code:: robotframework
    :class: hidden
 
    *** Settings ***
 
-   Resource  setup.robot
+   Library  Selenium2Library
+   Library  Selenium2Screenshots
 
    Suite Teardown  Close all browsers
 
-.. code:: robotframework
+   *** Variables ***
+
+   ${BROWSER}  Firefox
+
+   *** Keywords ***
+
+   Highlight heading
+       [Arguments]  ${locator}
+       Update element style  ${locator}  margin-top  0.75em
+       Highlight  ${locator}
 
    *** Test Cases ***
 
    Take an annotated screenshot of RobotFramework.org
        Open browser  http://robotframework.org/  browser=${BROWSER}
-       Update element style  header  margin-top  1em
-       Update element style  header h1  outline  3px dotted red
-       ${note1} =  Add note
-       ...    header
-       ...    PS. This is really cool stuff...
+
+       Highlight heading   css=#header h1
+
+       ${note1} =  Add pointy note
+       ...    css=#header
+       ...    This screenshot was generated using Robot Framework and Selenium.
        ...    width=250  position=bottom
        Capture and crop page screenshot  robotframework.png
-       ...    header  ${note1}
-
-And this is how it looks:
-
-.. image:: robotframework.png
-   :width: 600
-
-P.S. You should look at source of this document, because this document
-actually includes two ``.. code:: robotframework``-directives, but the first
-one is being hidden with a magical ``:class: hidden``-option.
+       ...    css=#header  ${note1}
 
 .. robotframework::
    :creates: robotframework.png
 
-.. Links:
-.. _sphinxcontrib-robotframework:
-   http://pypi.python.org/pypi/sphinxcontrib-robotframework
-.. _robotframework-selenium2library:
-   http://pypi.python.org/pypi/robotframework-selenium2library
-.. _robotframework-selenium2screenshots:
-   http://pypi.python.org/pypi/robotframework-selenium2screenshots
-.. _plone.app.robotframework:
-   http://pypi.python.org/pypi/plone.app.robotframework
+.. note::
+
+   The image cropping feature for **robotframework-selenium2screenshots**
+   requires PIL_ or Pillow_.
+
+.. _PIL: https://pypi.python.org/pypi/PIL
+.. _Pillow: https://pypi.python.org/pypi/Pillow

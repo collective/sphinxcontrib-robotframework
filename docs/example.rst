@@ -1,9 +1,8 @@
 Document with embedded tests
 ============================
 
-With the Robot Framework space separated format, a minimal test suite
-would consists of ``*** Test Cases ***`` header and at least
-one test case, like:
+With the Robot Framework space separated format, a minimal test suite must
+contain the ``*** Test Cases ***`` header and at least one test case, like:
 
 .. code:: robotframework
 
@@ -12,8 +11,8 @@ one test case, like:
    Foo is always foo
        Should be equal  foo  foo
 
-One ``*** Test Cases ***``-header may be followed by as many
-tests as required, like:
+But the ``*** Test Cases ***``-header may be followed by as many tests as
+required, like:
 
 .. code:: robotframework
 

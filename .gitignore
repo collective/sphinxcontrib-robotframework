@@ -2,4 +2,5 @@ syntax: glob
 *.egg-info
 *.pyc
 .idea
+.DS_Store
 html

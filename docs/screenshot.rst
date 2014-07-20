@@ -1,11 +1,16 @@
 Document with a screenshot
 ==========================
 
-The fun with `sphinxcontrib-robotframework`_ starts in using it with
-`robotframework-selenium2library`_. Together, they allow you to navigate any
-website, take screenshots when required and finally embed those screenshot into
-this very Sphinx-documentation:
+The fun with **sphinxcontrib-robotframework** starts in using it together
+with `robotframework-selenium2library`_.
 
+.. _Selenium2Library: https://github.com/rtomac/robotframework-selenium2library
+
+These packages together  would allow you to navigate any website, take
+screenshots when required and finally embed those screenshot into this very
+Sphinx-documentation. All this with just ``sphinx-build``:
+
+.. figure:: robotframework.png
 .. code:: robotframework
 
    *** Settings ***
@@ -24,28 +29,15 @@ this very Sphinx-documentation:
        Open browser  http://robotframework.org/  browser=${BROWSER}
        Capture page screenshot  robotframework.png
 
-Finally, to avoid the same screenshot being generated again and again, limit it
-to be generated only once, by entering the following special
-``robotframework``-directive.
+Finally, to avoid the same screenshot being generated again and again, a
+special ``robotframework``-directive (added by this package) can be used
+to limit the tests to be executed only once (until the listed screenshot
+is successfully generated):
 
 .. code:: restructuredtext
 
    .. robotframework::
       :creates: robotframework.png
 
-This will limit tests in this document to be run only when the files expected
-to be created by Robot Framework do not exist.
-
 .. robotframework::
    :creates: robotframework.png
-
-Isn't it beautiful:
-
-.. image:: robotframework.png
-   :width: 600
-
-.. Links:
-.. _sphinxcontrib-robotframework:
-   http://pypi.python.org/pypi/sphinxcontrib-robotframework
-.. _robotframework-selenium2library:
-   http://pypi.python.org/pypi/robotframework-selenium2library

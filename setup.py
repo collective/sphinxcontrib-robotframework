@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 setup(
     name='sphinxcontrib-robotframework',
     version='0.4.4.dev0',
-    description='Robot Framework plugin for Sphinx',
+    description='Robot Framework extension for Sphinx documentation generator',
     long_description=(open("README.rst").read() + "\n" +
                       open("CHANGES.txt").read()),
-    url='http://github.com/vivekkodu/sphinxcontrib_robotframework',
-    author='Vivek',
-    author_email='1990vivekkumarverma@gmail.com',
+    url='http://github.com/datakurre/sphinxcontrib_robotframework',
+    author='Asko Soukka',
+    author_email='asko.soukka@iki.fi',
     license='GPL',
     py_modules=[
         'sphinxcontrib_robotframework'
@@ -19,13 +19,13 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'Pygments >= 1.6',
         'Sphinx',
-        'robotframework',
-        'Pygments',
+        'robotframework >= 2.8.0',
     ],
     extras_require={'docs': [
         'robotframework',
         'robotframework-selenium2library',
-        'robotframework-selenium2screenshots[Pillow]',
+        'robotframework-selenium2screenshots [Pillow] >= 0.5.0',
     ]}
 )

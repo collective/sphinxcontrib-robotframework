@@ -8,6 +8,10 @@ extensions = [
 # Enable Robot Framework tests during Sphinx compilation.
 sphinxcontrib_robotframework_enabled = True
 
+# Hide Robot Framework syntax from the Sphinx output by default
+# (preferred, when you use the extension for scripted screenshots)
+sphinxcontrib_robotframework_quiet = False
+
 # Configure Robot Frameowrk tests to use Firefox
 sphinxcontrib_robotframework_variables = {
     "BROWSER": "Firefox"
@@ -27,9 +31,6 @@ project = u'sphinxcontrib-robotframework'
 copyright = u'vivek <1990vivekkumarverma@gmail.com>, '\
             u'Asko Soukka <asko.soukka@iki.fi>'
 
-# coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinxcontrib_robotframework']
-
 # General information about the project.
 
 # The version info for the project you're documenting, acts as replacement for
@@ -39,7 +40,7 @@ extensions = ['sphinxcontrib_robotframework']
 # The short X.Y version.
 version = '0.4'
 # The full version, including alpha/beta/rc tags.
-release = '0.4.2'
+release = '0.4.3'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -67,6 +68,6 @@ latex_documents = [
     # (source target file, target latex name, document title,
     #  author, document clas [howto/manual]),
     ('index', 'sphinxcontrib-robotframework.tex',
-     u'Robot Framework Selenium2Screenshots Library Documentation',
+     u'Robot Framework Sphinx Contrib Library Documentation',
      u'asko.soukka@iki.fi', 'manual'),
 ]
