@@ -5,9 +5,9 @@ While Selenium_ has built-in support for capturing whole page screenshots, usual
 
 .. _Selenium: http://docs.seleniumhq.org/
 
-A Robot Framework library called `robotframework-selenium2screenshots`_ provides a collection of re-usable keywords for cropping and annotating screenshots.
+A Robot Framework library called Selenium2Screenshots_ provides a collection of re-usable keywords for cropping and annotating screenshots.
 
-.. _robotframework-selenium2screenshots: http://pypi.python.org/pypi/robotframework-selenium2screenshots
+.. _Selenium2Screenshots: http://pypi.python.org/pypi/robotframework-selenium2screenshots
 
 A cropped and annotated screenshot could look like this:
 

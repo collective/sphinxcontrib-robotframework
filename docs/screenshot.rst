@@ -2,7 +2,7 @@ Document with a screenshot
 ==========================
 
 The fun with **sphinxcontrib-robotframework** starts in using it together
-with `robotframework-selenium2library`_.
+with Selenium2Library_.
 
 .. _Selenium2Library: https://github.com/rtomac/robotframework-selenium2library
 
