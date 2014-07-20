@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='sphinxcontrib-robotframework',
     version='0.4.4.dev0',
-    description='Robot Framework extension for Sphinx documentation generator',
+    description='Robot Framework extension for Sphinx',
     long_description=(open("README.rst").read() + "\n" +
                       open("CHANGES.txt").read()),
     url='http://github.com/datakurre/sphinxcontrib_robotframework',

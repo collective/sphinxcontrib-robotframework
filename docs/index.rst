@@ -1,9 +1,9 @@
-Sphinx-extension for Robot Framework
+Robot Framework extension for Sphinx
 ====================================
 
-**sphinxcontrib-robotframework** is a Sphinx_-extensions, which executes embedded `Robot Framework`_-tests during Sphinx-documentation compilation.
+**sphinxcontrib-robotframework** is a Sphinx_-extension, which executes embedded `Robot Framework`_ tests during ``sphinx-build``.
 
-**sphinxcontrib-robotframework** can be used in doctest_ way to validate examples shown in documentation or with Selenium_ its Robot Framework integration, Selenium2Library_, to generate scripted screenshots during the documentation compiliation time, for CI-generated up-to-date screenshots.
+**sphinxcontrib-robotframework** can be used in doctest_ way to validate examples shown in documentation or with Selenium_ and its Robot Framework integration, Selenium2Library_, to generate scripted screenshots during the documentation compiliation time, for CI-generated up-to-date screenshots.
 
 .. _Robot Framework: http://robotframework.org/
 .. _Selenium2Library: https://github.com/rtomac/robotframework-selenium2library
