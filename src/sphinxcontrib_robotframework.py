@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-
-import os
-import docutils
 from docutils.parsers.rst import Directive
+import docutils
+import hashlib
+import os
+import pickle
 import robot
 import tempfile
 
 from sphinx.directives import CodeBlock
+
+ROBOT_PICKLE_FILENAME = 'robotframework.pickle'
 
 
 class RobotAwareCodeBlock(CodeBlock):
@@ -17,23 +20,26 @@ class RobotAwareCodeBlock(CodeBlock):
     )
 
     def run(self):
-        if u"robotframework" in self.arguments:
-            document = self.state_machine.document
-            robot_source = u"\n".join(self.content)
+        app = self.state_machine.document.settings.env.app
+        document = self.state_machine.document
+
+        if 'robotframework' in self.arguments:
+            robot_source = u'\n'.join(self.content)
             if not hasattr(document, '_robot_source'):
                 document._robot_source = robot_source
             else:
-                document._robot_source += u"\n" + robot_source
+                document._robot_source += u'\n' + robot_source
+
             if 'hidden' in (self.options.get('class', []) or []):
                 return []  # suppress nodes with :class: hidden
-            app = document.settings.env.app
             if app.config.sphinxcontrib_robotframework_quiet:
-                return []  # suppress nodes when required
+                return []  # suppress nodes when required in settings
+
         return super(RobotAwareCodeBlock, self).run()
 
 
 def creates_option(argument):
-    """Splits list of filenames into a list (and defaults to an empty list).
+    """Splitslist of filenames into a list (and defaults to an empty list).
     """
     return filter(bool, argument.split() if argument else [])
 
@@ -47,14 +53,8 @@ class RobotSettingsDirective(Directive):
     }
 
     def run(self):
-        document = self.state_machine.document
-        # Stores list of test created artifacts to control test execution:
-        creates = self.options.get('creates', [])
-        if not hasattr(document, '_robot_creates'):
-            document._robot_creates = creates[:]
-        else:
-            document._robot_creates.extend(creates)
-        # Return an empty list of nodes to not affect the resulting docs:
+        # This directive was made obsolete in >= 0.5.0 and is now waiting for a
+        # new purpose...
         return []
 
 
@@ -77,21 +77,22 @@ def run_robot(app, doctree, docname):
     if not app.config.sphinxcontrib_robotframework_enabled:
         return
 
-    # Set up a variable for "the current working directory":
+    # Set up a variable for 'the current working directory':
     robot_dir = os.path.dirname(os.path.join(app.srcdir, docname))
-
-    # Tests can be made conditional by listing artifacts created by the
-    # tests. When artifacts are listed, tests are only run as long as those
-    # artifacts don't exist:
-    creates_paths = [os.path.join(robot_dir, x)
-                     for x in getattr(doctree, '_robot_creates', [])]
-    missing_paths = [path for path in creates_paths
-                     if not os.path.isfile(path)]
-    if creates_paths and not missing_paths:
-        return
 
     # Tests are only run when they are found:
     if not hasattr(doctree, '_robot_source'):
+        return
+
+    # Skip already run robotframework suites
+    checksums_filename = os.path.join(app.doctreedir, ROBOT_PICKLE_FILENAME)
+    try:
+        with open(checksums_filename) as fp:
+            checksums = pickle.loads(fp.read())
+    except (IOError, EOFError, TypeError, IndexError):
+        checksums = []
+    checksum = hashlib.md5(doctree._robot_source).hexdigest()
+    if checksum in checksums:
         return
 
     # Build a test suite:
@@ -126,7 +127,10 @@ def run_robot(app, doctree, docname):
             if not key in env_robot_keys
         ]
     }
-    robot.run(robot_file.name, **options)
+        # Update persisted checksums
+    if robot.run(robot_file.name, **options) == 0:
+        with open(checksums_filename, 'w') as fp:
+            fp.write(pickle.dumps(checksums + [checksum]))
 
     # Close the test suite (and delete it, because it's a tempfile):
     robot_file.close()

@@ -28,16 +28,3 @@ Sphinx-documentation. All this with just ``sphinx-build``:
    Capture a screenshot of RobotFramework.org
        Open browser  http://robotframework.org/  browser=${BROWSER}
        Capture page screenshot  robotframework.png
-
-Finally, to avoid the same screenshot being generated again and again, a
-special ``robotframework``-directive (added by this package) can be used
-to limit the tests to be executed only once (until the listed screenshot
-is successfully generated):
-
-.. code:: restructuredtext
-
-   .. robotframework::
-      :creates: robotframework.png
-
-.. robotframework::
-   :creates: robotframework.png

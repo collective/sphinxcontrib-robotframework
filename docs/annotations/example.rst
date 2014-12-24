@@ -47,9 +47,6 @@ A cropped and annotated screenshot could look like this:
        Capture and crop page screenshot  robotframework.png
        ...    css=#header  ${note1}
 
-.. robotframework::
-   :creates: robotframework.png
-
 .. note::
 
    The image cropping feature for **robotframework-selenium2screenshots**

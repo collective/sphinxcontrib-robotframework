@@ -2,5 +2,7 @@ syntax: glob
 *.egg-info
 *.pyc
 .idea
+.installed.cfg
 .DS_Store
 html
+build
