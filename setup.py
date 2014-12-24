@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sphinxcontrib-robotframework',
-    version='0.5.0.dev0',
+    version='0.5.0',
     description='Robot Framework extension for Sphinx',
     long_description=(open("README.rst").read() + "\n" +
                       open("CHANGES.txt").read()),
