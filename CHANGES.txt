@@ -1,43 +1,46 @@
 Changelog
 =========
 
-0.4.5 (unreleased)
+0.5.0 (unreleased)
 ------------------
 
-- No changes yet.
+- Add to persist log of successfully run Robot Framework tests and to not
+  re-run them until they are changed (or build is cleared).
+  This obsoletes ``.. robotframework:: :creates:`` -behavior.
+  [datakurre]
 
 0.4.4 (2014-07-20)
 ------------------
 
 - Update documentation
-  [Asko Soukka]
+  [datakurre]
 
 0.4.3 (2014-02-10)
 ------------------
 
 - Add global 'quiet' option to drop all robot syntax from sphinx output
-  [Asko Soukka]
+  [datakurre]
 
 0.4.2 (2013-09-30)
 ------------------
 
 - Fix to keep working with robotframework < 2.8.x
-  [Asko Soukka]
+  [datakurre]
 
 0.4.1 (2013-09-30)
 ------------------
 
 - Add test suite validation and skip running test suites without test cases
-  [Asko Soukka]
+  [datakurre]
 
 0.4.0 (2013-09-29)
 ------------------
 
 - Add support for overriding robot variables using ROBOT\_-prefixed environment
-  variables [Asko Soukka]
+  variables [datakurre]
 
 0.3.1 (2013-09-21)
 ------------------
 
 - Fix issue in Sphinx's image processing after test has been run
-  [Asko Soukka]
+  [datakurre]
