@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.1 (unreleased)
+0.5.1 (2015-07-24)
 ------------------
 
 - Fix issue where non-ascii characters caused build failures

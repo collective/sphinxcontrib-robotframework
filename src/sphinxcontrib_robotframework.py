@@ -72,7 +72,6 @@ def get_robot_variables():
 
 
 def run_robot(app, doctree, docname):
-
     # Tests can be switched off with a global setting:
     if not app.config.sphinxcontrib_robotframework_enabled:
         return
