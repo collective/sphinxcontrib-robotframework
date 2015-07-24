@@ -91,7 +91,7 @@ def run_robot(app, doctree, docname):
             checksums = pickle.loads(fp.read())
     except (IOError, EOFError, TypeError, IndexError):
         checksums = []
-    checksum = hashlib.md5(doctree._robot_source).hexdigest()
+    checksum = hashlib.md5(doctree._robot_source.encode('utf-8')).hexdigest()
     if checksum in checksums:
         return
 
