@@ -4,8 +4,8 @@ Changelog
 0.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix issue where non-ascii characters caused build failures
+  [datakurre]
 
 0.5.0 (2014-12-24)
 ------------------
