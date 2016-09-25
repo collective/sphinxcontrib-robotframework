@@ -4,8 +4,8 @@ Changelog
 0.6.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix to provide default value (False) when checking for nitpicky mode.
+  [datakurre]
 
 0.6.0 (2016-09-25)
 ------------------
