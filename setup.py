@@ -10,6 +10,7 @@ setup(
     author='Asko Soukka',
     author_email='asko.soukka@iki.fi',
     license='GPL',
+    zip_safe=True,
     py_modules=[
         'sphinxcontrib_robotframework'
     ],
