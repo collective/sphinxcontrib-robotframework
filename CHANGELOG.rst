@@ -9,7 +9,7 @@ Changelog
   When nitpicky mode is enabled, failing Robot Framework test in docs will
   raise Sphinx error and leave Robot Framework log file into docs src
   directory.
-  [datakurre]§
+  [datakurre]
 
 0.5.1 (2015-07-24)
 ------------------
