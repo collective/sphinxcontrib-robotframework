@@ -9,3 +9,4 @@ html
 build
 docs/*.xml
 docs/*.html
+/result

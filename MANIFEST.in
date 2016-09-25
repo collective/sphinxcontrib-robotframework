@@ -1,3 +1,4 @@
-include *.nix *.rst *.py
+include VERSION *.nix *.rst *.py
+exclude MANIFEST.in
 global-exclude *.pyc
 prune docs
