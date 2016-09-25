@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.1 (unreleased)
+0.6.1 (2016-09-25)
 ------------------
 
 - Fix to provide default value (False) when checking for nitpicky mode.
