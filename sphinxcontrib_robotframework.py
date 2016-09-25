@@ -133,7 +133,7 @@ def run_robot(app, doctree, docname):
     }
 
     # Update persisted checksums
-    nitpicky = getattr(app.config, 'nitpicky')
+    nitpicky = getattr(app.config, 'nitpicky', False)
     result = robot.run(robot_file.name, **options)
     if result == 0:
         with open(checksums_filename, 'w') as fp:
