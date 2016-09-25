@@ -1,11 +1,15 @@
 Changelog
 =========
 
-0.5.2 (unreleased)
+0.6.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Sphinx nitpicky-mode.
 
+  When nitpicky mode is enabled, failing Robot Framework test in docs will
+  raise Sphinx error and leave Robot Framework log file into docs src
+  directory.
+  [datakurre]§
 
 0.5.1 (2015-07-24)
 ------------------

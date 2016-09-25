@@ -1,11 +1,11 @@
-from setuptools import setup, find_packages
+from distutils.core import setup
 
 setup(
     name='sphinxcontrib-robotframework',
-    version='0.5.2.dev0',
+    version=open('VERSION').read().strip(),
     description='Robot Framework extension for Sphinx',
     long_description=(open("README.rst").read() + "\n" +
-                      open("CHANGES.txt").read()),
+                      open("CHANGELOG.rst").read()),
     url='http://github.com/datakurre/sphinxcontrib_robotframework',
     author='Asko Soukka',
     author_email='asko.soukka@iki.fi',
@@ -13,10 +13,6 @@ setup(
     py_modules=[
         'sphinxcontrib_robotframework'
     ],
-    packages=find_packages('src', exclude=['ez_setup']),
-    package_dir={'': 'src'},
-    include_package_data=True,
-    zip_safe=False,
     install_requires=[
         'setuptools',
         'Pygments >= 1.6',

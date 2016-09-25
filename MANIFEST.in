@@ -1,4 +1,3 @@
-recursive-include docs *
-recursive-include src *
-include *.txt *.rst setup.py
+include *.nix *.rst *.py
 global-exclude *.pyc
+prune docs
