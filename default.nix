@@ -26,9 +26,10 @@ in pythonPackages.buildPythonPackage rec {
     (path: type: baseNameOf path != ".git"
               && baseNameOf path != "result")
     ./.;
-  buildInputs = with pkgs; with self; [
-    robotframework-selenium2screenshots
+  buildInputs = with pkgs; with self; with pythonPackages; [
     phantomjs2
+    readline
+    robotframework-selenium2screenshots
   ];
   propagatedBuildInputs = with pythonPackages; [
     robotframework

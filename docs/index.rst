@@ -74,3 +74,6 @@ Getting started
       sphinxcontrib_robotframework_variables = {
           "VARIABLE": "value"
       }
+
+When Sphinx *nitpicky* mode is enabled, failing Robot Framework run will
+raise Sphinx Error and leave Robot Framework log files in place.

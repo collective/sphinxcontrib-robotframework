@@ -8,6 +8,7 @@ import robot
 import tempfile
 
 from sphinx.directives import CodeBlock
+from sphinx.errors import SphinxError
 
 ROBOT_PICKLE_FILENAME = 'robotframework.pickle'
 
@@ -115,10 +116,14 @@ def run_robot(app, doctree, docname):
     env_robot_keys = [var.split(':')[0] for var in env_robot_variables]
 
     # Run the test suite:
+    output = os.path.join(
+        robot_dir, '{0:s}.output.xml'.format(robot_file.name))
+    log = os.path.join(
+        robot_dir, '{0:s}.log.html'.format(robot_file.name))
     options = {
         'outputdir': robot_dir,
-        'output': 'NONE',
-        'log': 'NONE',
+        'output': output,
+        'log': log,
         'report': 'NONE',
         'variable': env_robot_variables + [
             '%s:%s' % (key, value) for key, value
@@ -126,10 +131,18 @@ def run_robot(app, doctree, docname):
             if not key in env_robot_keys
         ]
     }
-        # Update persisted checksums
-    if robot.run(robot_file.name, **options) == 0:
+
+    # Update persisted checksums
+    nitpicky = getattr(app.config, 'nitpicky')
+    result = robot.run(robot_file.name, **options)
+    if result == 0:
         with open(checksums_filename, 'w') as fp:
             fp.write(pickle.dumps(checksums + [checksum]))
+    elif nitpicky:
+        raise SphinxError('Robot Framework reported errors. '
+                          'Please, see "{0:s}" for details.'.format(log))
+    os.unlink(output)
+    os.unlink(log)
 
     # Close the test suite (and delete it, because it's a tempfile):
     robot_file.close()

@@ -7,3 +7,5 @@ syntax: glob
 .DS_Store
 html
 build
+docs/*.xml
+docs/*.html
