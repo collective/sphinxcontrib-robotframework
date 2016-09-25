@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.0 (unreleased)
+0.6.0 (2016-09-25)
 ------------------
 
 - Add support for Sphinx nitpicky-mode.
