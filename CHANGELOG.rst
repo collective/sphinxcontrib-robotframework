@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.2 (unreleased)
+0.7.0 (2017-10-03)
 ------------------
 
 - Fix issue where plugin was broken on Sphinx >= 1.5
