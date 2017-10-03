@@ -4,8 +4,11 @@ Changelog
 0.6.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix issue where plugin was broken on Sphinx >= 1.5
+  [datakurre]
 
+- Fix issue where robot framework test suites without tests were run
+  [datakurre]
 
 0.6.1 (2016-09-25)
 ------------------
