@@ -159,7 +159,13 @@ def run_robot(app, doctree, docname):
         for node in doctree.traverse(docutils.nodes.image):
             if node['uri'].startswith(removable):
                 node['uri'] = node['uri'][len(removable):]
-    app.env.process_images(docname, doctree)
+    try:
+        app.env.process_images(docname, doctree)
+    except AttributeError:  # Sphinx >= 1.5
+        app.env.temp_data['docname'] = docname
+        from sphinx.environment.collectors.asset import ImageCollector
+        ImageCollector().process_doc(app, doctree)
+        del app.env.temp_data['docname']
 
 
 def setup(app):
