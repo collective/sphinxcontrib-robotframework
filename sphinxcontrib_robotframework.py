@@ -102,7 +102,7 @@ def run_robot(app, doctree, docname):
 
     # Skip running when the source has no test cases (e.g. has settings)
     try:
-        robot.running.TestSuiteBuilder().build(robot_file.name)
+        robot_suite = robot.running.TestSuiteBuilder().build(robot_file.name)
     except robot.errors.DataError, e:
         if e.message.endswith('File has no test case table.'):
             return
@@ -110,6 +110,8 @@ def run_robot(app, doctree, docname):
     except AttributeError, e:
         # Fix to make this package still work with robotframework < 2.8.x
         pass
+    if not len(robot_suite.tests):
+        return
 
     # Get robot variables from environment
     env_robot_variables = get_robot_variables()
@@ -141,8 +143,10 @@ def run_robot(app, doctree, docname):
     elif nitpicky:
         raise SphinxError('Robot Framework reported errors. '
                           'Please, see "{0:s}" for details.'.format(log))
-    os.unlink(output)
-    os.unlink(log)
+    if os.path.isfile(output):
+        os.unlink(output)
+    if os.path.isfile(log):
+        os.unlink(log)
 
     # Close the test suite (and delete it, because it's a tempfile):
     robot_file.close()
