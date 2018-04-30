@@ -16,8 +16,8 @@ ROBOT_PICKLE_FILENAME = 'robotframework.pickle'
 class RobotAwareCodeBlock(CodeBlock):
 
     option_spec = dict(
-        docutils.parsers.rst.directives.body.CodeBlock.option_spec.items()
-        + CodeBlock.option_spec.items()
+        list(docutils.parsers.rst.directives.body.CodeBlock.option_spec.items())
+        + list(CodeBlock.option_spec.items())
     )
 
     def run(self):
@@ -103,11 +103,11 @@ def run_robot(app, doctree, docname):
     # Skip running when the source has no test cases (e.g. has settings)
     try:
         robot_suite = robot.running.TestSuiteBuilder().build(robot_file.name)
-    except robot.errors.DataError, e:
+    except robot.errors.DataError as e:
         if e.message.endswith('File has no test case table.'):
             return
         raise
-    except AttributeError, e:
+    except AttributeError as e:
         # Fix to make this package still work with robotframework < 2.8.x
         pass
     if not len(robot_suite.tests):
