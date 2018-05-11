@@ -4,8 +4,11 @@ Changelog
 0.7.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Release as universal wheel
+  [datakurre]
 
+- Python 3 syntax support
+  [Siming Yuan]
 
 0.7.0 (2017-10-03)
 ------------------
