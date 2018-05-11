@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7.1 (unreleased)
+0.8.0 (2018-05-11)
 ------------------
 
 - Release as universal wheel
