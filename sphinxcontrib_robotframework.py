@@ -87,7 +87,7 @@ def run_robot(app, doctree, docname):
     # Skip already run robotframework suites
     checksums_filename = os.path.join(app.doctreedir, ROBOT_PICKLE_FILENAME)
     try:
-        with open(checksums_filename, 'wb') as fp:
+        with open(checksums_filename, 'rb') as fp:
             checksums = pickle.loads(fp.read())
     except (IOError, EOFError, TypeError, IndexError):
         checksums = []
