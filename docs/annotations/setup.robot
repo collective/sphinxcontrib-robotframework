@@ -1,8 +1,8 @@
 *** Settings ***
 
-Library  Selenium2Library
-Library  Selenium2Screenshots
+Library  SeleniumLibrary
+Library  SeleniumScreenshots
 
 *** Variables ***
 
-${BROWSER}  Firefox
+${BROWSER}  headlessfirefox

@@ -87,7 +87,7 @@ def run_robot(app, doctree, docname):
     # Skip already run robotframework suites
     checksums_filename = os.path.join(app.doctreedir, ROBOT_PICKLE_FILENAME)
     try:
-        with open(checksums_filename) as fp:
+        with open(checksums_filename, 'rb') as fp:
             checksums = pickle.loads(fp.read())
     except (IOError, EOFError, TypeError, IndexError):
         checksums = []
@@ -138,7 +138,7 @@ def run_robot(app, doctree, docname):
     nitpicky = getattr(app.config, 'nitpicky', False)
     result = robot.run(robot_file.name, **options)
     if result == 0:
-        with open(checksums_filename, 'w') as fp:
+        with open(checksums_filename, 'wb') as fp:
             fp.write(pickle.dumps(checksums + [checksum]))
     elif nitpicky:
         raise SphinxError('Robot Framework reported errors. '

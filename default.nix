@@ -1,38 +1,49 @@
-{ pkgs ? import (builtins.fetchTarball
-  "https://github.com/nixos/nixpkgs-channels/archive/nixos-16.09.tar.gz") {}
-, pythonPackages ? pkgs.pythonPackages
+{ pkgs ? import ./nix { nixpkgs = sources."nixpkgs-20.09"; }
+, sources ? import ./nix/sources.nix {}
+, python ? "python38"
+, pythonPackages ? builtins.getAttr (python + "Packages") pkgs
 }:
 
 let self = {
+
   version = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./VERSION);
 
-  robotframework-selenium2screenshots = pythonPackages.buildPythonPackage {
-    name = "robotframework-selenium2screenshots-0.7.0";
-    src = pkgs.fetchurl {
-      url = "https://pypi.python.org/packages/6f/2c/7be0b687a264dad839fce39f9b28b13b7bf1ebd3b45b3cc858f3c44bc4b9/robotframework-selenium2screenshots-0.7.0.tar.gz";
-      sha256 = "64a272e61787ab42206db631a238dae91bccd40a35c47896485c52f0591a4616";
+  robotframework-seleniumscreenshots = pythonPackages.buildPythonPackage rec {
+    pname = "robotframework-seleniumscreenshots";
+    version = "0.9.5";
+    src = pythonPackages.fetchPypi {
+      inherit pname version;
+      sha256 = "05qv323hvjmy62h33ryrjaa9k1hyvp8hq5qnj8j1x3ap2ci3q3s0";
     };
     propagatedBuildInputs = with pythonPackages; [
       pillow
-      robotframework-selenium2library
+      robotframework-seleniumlibrary
     ];
+    doCheck = false;
   };
+
 };
 
 in pythonPackages.buildPythonPackage rec {
   namePrefix = "";
-  name = "sphinxcontrib-robotframework-${self.version}";
-  src = builtins.filterSource
-    (path: type: baseNameOf path != ".git"
-              && baseNameOf path != "result")
-    ./.;
-  buildInputs = with pkgs; with self; with pythonPackages; [
-    phantomjs2
-    readline
-    robotframework-selenium2screenshots
+  pname = "sphinxcontrib-robotframework";
+  inherit (self) version;
+  src = pkgs.gitignoreSource ./.;
+  nativeBuildInputs = with self; with pythonPackages; with pkgs; [
+    robotframework-seleniumlibrary
+    robotframework-seleniumscreenshots
+    firefox
+    geckodriver
+    sphinx
   ];
   propagatedBuildInputs = with pythonPackages; [
+    pygments
     robotframework
     sphinx
   ];
+  passthru = {
+    env = pythonPackages.python.withPackages(ps:
+      (nativeBuildInputs ++ propagatedBuildInputs)
+    );
+  };
 }
