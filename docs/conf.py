@@ -14,7 +14,7 @@ sphinxcontrib_robotframework_quiet = False
 
 # Configure Robot Frameowrk tests to use Firefox
 sphinxcontrib_robotframework_variables = {
-    "BROWSER": "phantomjs"
+    "BROWSER": "headlessfirefox"
 }
 
 # The suffix of source filenames.
