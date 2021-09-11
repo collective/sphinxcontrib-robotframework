@@ -4,8 +4,8 @@ Changelog
 0.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fix Python >= 3.8 support
+  [mileo]
 
 0.8.0 (2018-05-11)
 ------------------
