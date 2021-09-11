@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8.1 (unreleased)
+0.8.1 (2021-09-11)
 ------------------
 
 - Fix Python >= 3.8 support
