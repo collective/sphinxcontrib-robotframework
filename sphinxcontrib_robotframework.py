@@ -7,7 +7,7 @@ import pickle
 import robot
 import tempfile
 
-from sphinx.directives import CodeBlock
+from sphinx.directives.code import CodeBlock
 from sphinx.errors import SphinxError
 
 ROBOT_PICKLE_FILENAME = 'robotframework.pickle'
